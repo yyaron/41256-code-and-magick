@@ -19,10 +19,8 @@ var renderCloud = function (x, y, color, ctx) {
 };
 
 window.renderStatistics = function (ctx, names, times) {
-
   //  настройки окна
   ctx.strokeRect(100, 10, CLOUD_WIDTH, CLOUD_HEIGHT);
-
   renderCloud(110, 20, 'rgba(0, 0, 0, 0.7)', ctx);
   renderCloud(100, 10, '#fff', ctx);
 
@@ -34,7 +32,6 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', 120, 50);
 
   //  гистограмма
-
   //  находим наибольшее время
   var getMaxElement = function () {
     var maxElement = times[0];
@@ -50,26 +47,22 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   //  получаем случайное значение для непрозрачности
-  // var getRandomNumber = function () {
-  //  return Math.random();
-  //};
-
-  // var randomNumber = getRandomNumber();
+    var getRandomNumber = function () {
+      return Math.random();
+    };
 
   //  рисуем гистограмму
   for (var j = 0; j < names.length; j++) {
-
     var barLength = MAX_BAR * times[j] / maxTime;
 
     ctx.fillStyle = '#000';
     ctx.fillText(names[j], PADDING_LEFT + GAP * (j + 1) + BAR_WIDTH * j, PLAYERS_Y);
     ctx.fillText(Math.round(times[j]), PADDING_LEFT + GAP * (j + 1) + BAR_WIDTH * j, -barLength + TIME_GAP);
-    ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+    ctx.fillStyle = 'rgba(0, 0, 255, '+getRandomNumber()+')';
 
     if (names[j] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
-
     ctx.fillRect(PADDING_LEFT + GAP * (j + 1) + BAR_WIDTH * j, BAR_Y, BAR_WIDTH, -barLength);
   }
 };
