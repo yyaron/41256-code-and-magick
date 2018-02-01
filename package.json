@@ -6,7 +6,7 @@
   "author": "Iaroslav Rudenko",
   "repository": {
     "type": "git",
-    "url": "git@github.com:htmlacademy-javascript/41256-code-and-magick.git"
+    "url": "git+ssh://git@github.com/htmlacademy-javascript/41256-code-and-magick.git"
   },
   "bugs": {
     "url": "https://github.com/htmlacademy-javascript/41256-code-and-magick/issues"
@@ -16,11 +16,16 @@
     "eslint": "4.2.0",
     "eslint-config-htmlacademy": "0.3.x"
   },
-  "dependencies": {},
+  "dependencies": {
+    "grunt-cli": "^1.2.0"
+  },
   "scripts": {
     "test": "eslint js/"
   },
   "engines": {
     "node": "^6.10"
-  }
+  },
+  "homepage": "https://github.com/htmlacademy-javascript/41256-code-and-magick#readme",
+  "main": "index.js",
+  "keywords": []
 }
