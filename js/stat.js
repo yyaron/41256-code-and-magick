@@ -23,8 +23,8 @@ window.renderStatistics = function (ctx, names, times) {
   //  настройки окна
   ctx.strokeRect(100, 10, CLOUD_WIDTH, CLOUD_HEIGHT);
 
-  var statWindowShadow = renderCloud(110, 20, 'rgba(0, 0, 0, 0.7)', ctx);
-  var statWindow = renderCloud(100, 10, '#fff', ctx);
+  renderCloud(110, 20, 'rgba(0, 0, 0, 0.7)', ctx);
+  renderCloud(100, 10, '#fff', ctx);
 
   //  текст сообщения
   ctx.fillStyle = '#000';
@@ -36,7 +36,7 @@ window.renderStatistics = function (ctx, names, times) {
   //  гистограмма
 
   //  находим наибольшее время
-  var getMaxElement = function (times) {
+  var getMaxElement = function () {
     var maxElement = times[0];
 
     for (var i = 0; i < times.length; i++) {
@@ -50,16 +50,16 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
     //  получаем случайное значение для непрозрачности
-  var getRandomNumber = function() {
+  var getRandomNumber = function () {
     return Math.random();
   };
 
- var randomNumber = getRandomNumber();
+  var randomNumber = getRandomNumber();
 
   //  рисуем гистограмму
   for (var j = 0; j < names.length; j++) {
 
-    var barLength = MAX_BAR * times[j] / maxTime
+    var barLength = MAX_BAR * times[j] / maxTime;
 
     ctx.fillStyle = '#000';
     ctx.fillText(names[j], PADDING_LEFT + GAP * (j + 1) + BAR_WIDTH * j, PLAYERS_Y);
