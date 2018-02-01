@@ -46,7 +46,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = getMaxElement(times);
 
-  //  получаем случайное значение для непрозрачности
+  //  получаем слу чай ное значение для непрозрачности
   var getRandomNumber = function () {
     return Math.random();
   };
