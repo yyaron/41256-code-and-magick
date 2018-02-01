@@ -47,9 +47,9 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   //  получаем случайное значение для непрозрачности
-    var getRandomNumber = function () {
-      return Math.random();
-    };
+  var getRandomNumber = function () {
+    return Math.random();
+  };
 
   //  рисуем гистограмму
   for (var j = 0; j < names.length; j++) {
@@ -58,7 +58,7 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = '#000';
     ctx.fillText(names[j], PADDING_LEFT + GAP * (j + 1) + BAR_WIDTH * j, PLAYERS_Y);
     ctx.fillText(Math.round(times[j]), PADDING_LEFT + GAP * (j + 1) + BAR_WIDTH * j, -barLength + TIME_GAP);
-    ctx.fillStyle = 'rgba(0, 0, 255, '+getRandomNumber()+')';
+    ctx.fillStyle = 'rgba(0, 0, 255, ' +getRandomNumber()+ ')';
 
     if (names[j] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
