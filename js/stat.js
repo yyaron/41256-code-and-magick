@@ -49,12 +49,12 @@ window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = getMaxElement(times);
 
-    //  получаем случайное значение для непрозрачности
+  //  получаем случайное значение для непрозрачности
   var getRandomNumber = function () {
     return Math.random();
   };
 
-  var randomNumber = getRandomNumber();
+  // var randomNumber = getRandomNumber();
 
   //  рисуем гистограмму
   for (var j = 0; j < names.length; j++) {
