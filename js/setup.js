@@ -62,6 +62,7 @@ for (var j = 0; j < wizards.length; j++) {
 similarListElement.appendChild(fragment);
 
 /*
+//  СТАРЫЙ КУСОК КОДА - пусть пока полежит
 //  добавляем 4 шаблона похожих персонажей в .setup-similar-list
 for (var i = 0; i < wizards.length; i++) {
   var wizardElement = similarTemplate.cloneNode(true);
