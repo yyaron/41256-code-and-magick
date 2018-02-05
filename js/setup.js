@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -18,23 +18,23 @@ var getRandomElement = function (arr) {
   var max = arr.length;
   var randomElement = Math.round(Math.random() * (max - 1));
   return randomElement;
-}
+};
 
 // функция, которая генерирует массив с объектами. внутри объектов содержатся случайные значения
 var getRandomArr = function () {
-  //массив, в котором содержатся объекты, описывающие параметры персонажей
+  //  массив, в котором содержатся объекты, описывающие параметры персонажей
   var wizards = [];
   //  цикл, который добавляет в массив необходимое количество объектов
   for (var i = 0; i <= 3; i++) {
     wizards[i] =
     {
-      name: WIZARD_NAMES[getRandomElement(WIZARD_NAMES)]  + ' ' + WIZARD_SURNAMES[getRandomElement(WIZARD_SURNAMES)],
+      name: WIZARD_NAMES[getRandomElement(WIZARD_NAMES)] + ' ' + WIZARD_SURNAMES[getRandomElement(WIZARD_SURNAMES)],
       coatColor: COAT_COLORS[getRandomElement(COAT_COLORS)],
       eyeColor: EYE_COLORS[getRandomElement(EYE_COLORS)],
-    }
-  };
+    };
+  }
   return wizards;
-}
+};
 var wizards = getRandomArr();
 
 //  создаем переменные для окна похожих персонажей и шаблона
@@ -50,7 +50,7 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyeColor;
 
   return wizardElement;
-}
+};
 
 var fragment = document.createDocumentFragment();
 
@@ -74,8 +74,3 @@ for (var i = 0; i < wizards.length; i++) {
   similarListElement.appendChild(wizardElement);
 };
 */
-
-
-
-
-
