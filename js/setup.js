@@ -9,10 +9,6 @@ var EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
 
-//  делаем видимым окно похожих персонажей
-var similarDialog = document.querySelector('.setup-similar');
-similarDialog.classList.remove('hidden');
-
 //  с помощью функции получаем случайное число, которое зависит от длины массива
 var getRandomElement = function (arr) {
   var max = arr.length;
@@ -21,7 +17,7 @@ var getRandomElement = function (arr) {
 };
 
 // функция, которая генерирует массив с объектами. внутри объектов содержатся случайные значения
-var getRandomArr = function () {
+var getRandomWizards = function () {
   //  массив, в котором содержатся объекты, описывающие параметры персонажей
   var wizards = [];
   //  цикл, который добавляет в массив необходимое количество объектов
@@ -35,7 +31,7 @@ var getRandomArr = function () {
   }
   return wizards;
 };
-var wizards = getRandomArr();
+var wizards = getRandomWizards();
 
 //  создаем переменные для окна похожих персонажей и шаблона
 var similarListElement = document.querySelector('.setup-similar-list');
@@ -58,19 +54,8 @@ var fragment = document.createDocumentFragment();
 for (var j = 0; j < wizards.length; j++) {
   fragment.appendChild(renderWizard(wizards[j]));
 }
-
 similarListElement.appendChild(fragment);
 
-/*
-//  СТАРЫЙ КУСОК КОДА - пусть пока полежит
-//  добавляем 4 шаблона похожих персонажей в .setup-similar-list
-for (var i = 0; i < wizards.length; i++) {
-  var wizardElement = similarTemplate.cloneNode(true);
-
-  wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyeColor;
-
-  similarListElement.appendChild(wizardElement);
-};
-*/
+//  делаем видимым окно похожих персонажей
+var similarDialog = document.querySelector('.setup-similar');
+similarDialog.classList.remove('hidden');
