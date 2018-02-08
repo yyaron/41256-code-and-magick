@@ -6,8 +6,8 @@ var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161
 var EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 //  делаем видимым основное окно персонажа
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
+//  var userDialog = document.querySelector('.setup');
+//  userDialog.classList.remove('hidden');
 
 //  с помощью функции получаем случайное число, которое зависит от длины массива
 var getRandomElement = function (arr) {
@@ -59,3 +59,59 @@ similarListElement.appendChild(fragment);
 //  делаем видимым окно похожих персонажей
 var similarDialog = document.querySelector('.setup-similar');
 similarDialog.classList.remove('hidden');
+
+//  ///////////////////////////////////// //
+//  //.............. #12 ..............// //
+//  ///////////////////////////////////// //
+
+var setupWindow = document.querySelector('.setup');
+var setupOpenIcon = document.querySelector('.setup-open');
+var setupCloseIcon = setupWindow.querySelector('.setup-close');
+var saveButton = setupWindow.querySelector('.setup-submit');
+
+//  открываем окно по клику на иконку
+setupOpenIcon.addEventListener('click', function () {
+  setupWindow.classList.remove('hidden');
+
+  //  закрываем по нажании Enter, если крестик в фокусе
+  setupCloseIcon.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 13) {
+      setupWindow.classList.add('hidden');
+    }
+  });
+
+  //  закрываем по нажатии Escape
+  document.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 27) {
+      setupWindow.classList.add('hidden');
+    }
+  });
+
+  //  отправляем форму по клику на кнопку
+  saveButton.addEventListener('click', function () {
+    document.querySelector('.setup-wizard-form').submit();
+  });
+
+  //  отправляем форму по нажании Enter, если кнопка в фокусе
+  saveButton.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 13) {
+      document.querySelector('.setup-wizard-form').submit();
+    }
+  });
+});
+
+//  открываем окно по нажании Enter, если иконка в фокусе
+setupOpenIcon.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === 13) {
+    setupWindow.classList.remove('hidden');
+  }
+});
+
+//  закрываем по клику на крестик
+setupCloseIcon.addEventListener('click', function () {
+  setupWindow.classList.add('hidden');
+});
+
+
+
+
