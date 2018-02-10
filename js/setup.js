@@ -6,10 +6,6 @@ var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161
 var EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
-//  делаем видимым основное окно персонажа
-//  var userDialog = document.querySelector('.setup');
-//  userDialog.classList.remove('hidden');
-
 //  с помощью функции получаем случайное число, которое зависит от длины массива
 var getRandomElement = function (arr) {
   var max = arr.length;
@@ -31,6 +27,7 @@ var getRandomWizards = function () {
     };
   }
   return wizards;
+
 };
 var wizards = getRandomWizards();
 
@@ -73,59 +70,71 @@ var saveButton = setupWindow.querySelector('.setup-submit');
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 
-//  var openSetupWindow = function () {
-//    setupWindow.classList.remove('hidden');
-//  };
+var onWindowEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closeSetupWindow();
+  }
+};
 
-//  var closeSetupWindow = function () {
-//    setupWindow.classList.add('hidden');
-//  };
+var onWindowEnterPress = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closeSetupWindow();
+  }
+};
 
-//  открываем окно по клику на иконку
-setupOpenIcon.addEventListener('click', function () {
+//  функция открытия окна
+var openSetupWindow = function () {
   setupWindow.classList.remove('hidden');
 
   //  закрываем по нажании Enter, если крестик в фокусе
-  setupCloseIcon.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
-      setupWindow.classList.add('hidden');
-    }
-  });
+  setupCloseIcon.addEventListener('keydown', onWindowEnterPress);
 
   //  закрываем по нажатии Escape
-  document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE) {
-      setupWindow.classList.add('hidden');
-    }
-  });
+  document.addEventListener('keydown', onWindowEscPress);
+};
 
-  //  отправляем форму по клику на кнопку
-  saveButton.addEventListener('click', function () {
-    document.querySelector('.setup-wizard-form').submit();
-  });
+//  функция закрытия окна
+var closeSetupWindow = function () {
+  setupWindow.classList.add('hidden');
+  document.removeEventListener('keydown', onWindowEscPress);
+  document.removeEventListener('keydown', onWindowEnterPress);
+};
 
-  //  отправляем форму по нажании Enter, если кнопка в фокусе
-  saveButton.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
-      document.querySelector('.setup-wizard-form').submit();
-    }
-  });
+//  открываем окно по клику на иконку
+setupOpenIcon.addEventListener('click', function () {
+  openSetupWindow();
 });
 
 //  открываем окно по нажании Enter, если иконка в фокусе
 setupOpenIcon.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
-    setupWindow.classList.remove('hidden');
+    openSetupWindow();
   }
 });
 
 //  закрываем по клику на крестик
 setupCloseIcon.addEventListener('click', function () {
-  setupWindow.classList.add('hidden');
+  closeSetupWindow ();
 });
 
-var setupWizardCoatColor = document.querySelector('#wizard-coat');
-var setupWizardEyeColor = document.querySelector('#wizard-eyes');
+//  проверяем валидность введенного имени
+var userNameInput = document.querySelector('.setup-user-name');
+
+userNameInput.addEventListener('invalid', function (evt) {
+  if (userNameInput.validity.tooShort) {
+    userNameInput.setCustomValidity('Что это за имя такое короткое? Введи хотя бы 2 знака!');
+  } else if (userNameInput.validity.tooLong) {
+    userNameInput.setCustomValidity('Больше похоже на хэш-сумму. Попробуй поместиться в 25 знаков.');
+  } else if (userNameInput.validity.valueMissing) {
+    userNameInput.setCustomValidity('А имя кто будет вводить?');
+  } else {
+    userNameInput.setCustomValidity('');
+  }
+});
+
+//  меняем параметры персанажа по клику
+var setupWizardCoatColor = document.querySelector('.setup-wizard .wizard-coat');
+var setupWizardEyeColor = document.querySelector('.setup-wizard .wizard-eyes');
 var setupWizardFireballColor = document.querySelector('.setup-fireball-wrap');
 
 setupWizardCoatColor.addEventListener('click', function () {
