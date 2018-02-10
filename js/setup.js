@@ -73,13 +73,13 @@ var saveButton = setupWindow.querySelector('.setup-submit');
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 
-var openSetupWindow = function () {
-  setupWindow.classList.remove('hidden');
-};
+//  var openSetupWindow = function () {
+//    setupWindow.classList.remove('hidden');
+//  };
 
-var closeSetupWindow = function () {
-  setupWindow.classList.add('hidden');
-};
+//  var closeSetupWindow = function () {
+//    setupWindow.classList.add('hidden');
+//  };
 
 //  открываем окно по клику на иконку
 setupOpenIcon.addEventListener('click', function () {
@@ -139,6 +139,3 @@ setupWizardEyeColor.addEventListener('click', function () {
 setupWizardFireballColor.addEventListener('click', function () {
   setupWizardFireballColor.style.backgroundColor = FIREBALL_COLORS[getRandomElement(FIREBALL_COLORS)];
 });
-
-
-
