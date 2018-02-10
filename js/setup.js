@@ -4,6 +4,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 //  делаем видимым основное окно персонажа
 //  var userDialog = document.querySelector('.setup');
@@ -69,23 +70,39 @@ var setupOpenIcon = document.querySelector('.setup-open');
 var setupCloseIcon = setupWindow.querySelector('.setup-close');
 var saveButton = setupWindow.querySelector('.setup-submit');
 
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var onIconClick = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+      setupWindow.classList.add('hidden');
+    }
+
+  if (evt.keyCode === ESC_KEYCODE) {
+      setupWindow.classList.add('hidden');
+    }
+
+};
+
 //  открываем окно по клику на иконку
 setupOpenIcon.addEventListener('click', function () {
   setupWindow.classList.remove('hidden');
 
   //  закрываем по нажании Enter, если крестик в фокусе
-  setupCloseIcon.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 13) {
-      setupWindow.classList.add('hidden');
-    }
-  });
+  setupCloseIcon.addEventListener('keydown', onIconClick);
+  //setupCloseIcon.addEventListener('keydown', function (evt) {
+  //  if (evt.keyCode === ENTER_KEYCODE) {
+  //    setupWindow.classList.add('hidden');
+  //  }
+  //});
 
   //  закрываем по нажатии Escape
-  document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 27) {
-      setupWindow.classList.add('hidden');
-    }
-  });
+  document.addEventListener('keydown', onIconClick);
+  //document.addEventListener('keydown', function (evt) {
+  //  if (evt.keyCode === ESC_KEYCODE) {
+  //    setupWindow.classList.add('hidden');
+  //  }
+  //});
 
   //  отправляем форму по клику на кнопку
   saveButton.addEventListener('click', function () {
@@ -94,7 +111,7 @@ setupOpenIcon.addEventListener('click', function () {
 
   //  отправляем форму по нажании Enter, если кнопка в фокусе
   saveButton.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 13) {
+    if (evt.keyCode === ENTER_KEYCODE) {
       document.querySelector('.setup-wizard-form').submit();
     }
   });
@@ -102,7 +119,7 @@ setupOpenIcon.addEventListener('click', function () {
 
 //  открываем окно по нажании Enter, если иконка в фокусе
 setupOpenIcon.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 13) {
+  if (evt.keyCode === ENTER_KEYCODE) {
     setupWindow.classList.remove('hidden');
   }
 });
@@ -112,6 +129,21 @@ setupCloseIcon.addEventListener('click', function () {
   setupWindow.classList.add('hidden');
 });
 
+var setupWizardCoatColor = document.querySelector('#wizard-coat');
+var setupWizardEyeColor = document.querySelector('#wizard-eyes');
+var setupWizardFireballColor = document.querySelector('.setup-fireball-wrap');
+
+setupWizardCoatColor.addEventListener('click', function () {
+  setupWizardCoatColor.style.fill = COAT_COLORS[getRandomElement(COAT_COLORS)];
+});
+
+setupWizardEyeColor.addEventListener('click', function () {
+  setupWizardEyeColor.style.fill = EYE_COLORS[getRandomElement(EYE_COLORS)];
+});
+
+setupWizardFireballColor.addEventListener('click', function () {
+  setupWizardFireballColor.style.backgroundColor = FIREBALL_COLORS[getRandomElement(FIREBALL_COLORS)];
+});
 
 
 
