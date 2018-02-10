@@ -73,15 +73,12 @@ var saveButton = setupWindow.querySelector('.setup-submit');
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 
-var onIconClick = function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-      setupWindow.classList.add('hidden');
-    }
+var openSetupWindow = function () {
+  setupWindow.classList.remove('hidden');
+};
 
-  if (evt.keyCode === ESC_KEYCODE) {
-      setupWindow.classList.add('hidden');
-    }
-
+var closeSetupWindow = function () {
+  setupWindow.classList.add('hidden');
 };
 
 //  открываем окно по клику на иконку
@@ -89,20 +86,18 @@ setupOpenIcon.addEventListener('click', function () {
   setupWindow.classList.remove('hidden');
 
   //  закрываем по нажании Enter, если крестик в фокусе
-  setupCloseIcon.addEventListener('keydown', onIconClick);
-  //setupCloseIcon.addEventListener('keydown', function (evt) {
-  //  if (evt.keyCode === ENTER_KEYCODE) {
-  //    setupWindow.classList.add('hidden');
-  //  }
-  //});
+  setupCloseIcon.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
+      setupWindow.classList.add('hidden');
+    }
+  });
 
   //  закрываем по нажатии Escape
-  document.addEventListener('keydown', onIconClick);
-  //document.addEventListener('keydown', function (evt) {
-  //  if (evt.keyCode === ESC_KEYCODE) {
-  //    setupWindow.classList.add('hidden');
-  //  }
-  //});
+  document.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ESC_KEYCODE) {
+      setupWindow.classList.add('hidden');
+    }
+  });
 
   //  отправляем форму по клику на кнопку
   saveButton.addEventListener('click', function () {
