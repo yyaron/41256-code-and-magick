@@ -65,7 +65,6 @@ similarDialog.classList.remove('hidden');
 var setupWindow = document.querySelector('.setup');
 var setupOpenIcon = document.querySelector('.setup-open');
 var setupCloseIcon = setupWindow.querySelector('.setup-close');
-var saveButton = setupWindow.querySelector('.setup-submit');
 
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
@@ -114,13 +113,13 @@ setupOpenIcon.addEventListener('keydown', function (evt) {
 
 //  закрываем по клику на крестик
 setupCloseIcon.addEventListener('click', function () {
-  closeSetupWindow ();
+  closeSetupWindow();
 });
 
 //  проверяем валидность введенного имени
 var userNameInput = document.querySelector('.setup-user-name');
 
-userNameInput.addEventListener('invalid', function (evt) {
+userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.tooShort) {
     userNameInput.setCustomValidity('Что это за имя такое короткое? Введи хотя бы 2 знака!');
   } else if (userNameInput.validity.tooLong) {
