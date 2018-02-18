@@ -6,16 +6,16 @@ window.constants = (function () {
     COAT_COLORS: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
     EYE_COLORS: ['black', 'red', 'blue', 'yellow', 'green'],
     ENTER: 13,
-  }
+  };
 })();
 //  ...
 
 //  get-random-element.js
 window.getRandomElement = (function (arr) {
-    //  ^ с помощью функции получаем случайное число, которое зависит от длины массива
-    var max = arr.length;
-    var randomElement = Math.round(Math.random() * (max - 1));
-    return randomElement;
+  //  ^ с помощью функции получаем случайное число, которое зависит от длины массива
+  var max = arr.length;
+  var randomElement = Math.round(Math.random() * (max - 1));
+  return randomElement;
 });
 //  ...
 
